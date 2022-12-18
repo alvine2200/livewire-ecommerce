@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -26,4 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::any('logout', [DashboardController::class, 'logout']);
+
+    //category Controller routes
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('category', 'index');
+        Route::get('category/create', 'create');
+        Route::post('category/store', 'store');
+    });
 });

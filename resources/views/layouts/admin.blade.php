@@ -36,6 +36,7 @@
 
     <div class="container-scroller">
         @include('layouts.includes.navbar')
+       
         <div class="container-fluid page-body-wrapper">
             @include('layouts.includes.sidebar')
 
@@ -64,7 +65,7 @@
     <script src="{{ asset('admin/js/dataTables.bootstrap4.js') }}"></script>
     // <!-- End custom js for this page-->
     <script src="{{ asset('admin/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('') }}"></script>
+    
     @livewireScripts
 </body>
 
