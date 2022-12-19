@@ -1,5 +1,4 @@
 <div>
-
     @include('livewire.admin.brand.modal')
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     @include('layouts.includes.status')
@@ -28,17 +27,18 @@
                                     <td>{{ $brand->id }}</td>
                                     <td>{{ $brand->name }}</td>
                                     <td>{{ $brand->slug }}</td>
-                                    <td>{{ $brand->status === "1" ? "Hidden":"Visible" }}</td>
+                                    <td>{{ $brand->status === '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-info">Edit</a>|
                                         <a href="#" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
-
+                    <div class="pagination mt-3">
+                        {{ $brands->links() }}
+                    </div>
                 </div>
             </div>
         </div>

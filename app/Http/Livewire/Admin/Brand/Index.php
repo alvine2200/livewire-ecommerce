@@ -45,7 +45,7 @@ class Index extends Component
     }
     public function render()
     {
-        $brands = Brand::paginate(10);
+        $brands = Brand::paginate(2);
         return view('livewire.admin.brand.index', ['brands' => $brands])
             ->extends('layouts.admin')
             ->section('content');
