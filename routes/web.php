@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::any('category/{category}/delete', 'delete');
     });
 
+    //routes for brands livewire
     Route::get('brands', App\Http\Livewire\Admin\Brand\Index::class);
+
+    //admin backend products routes
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('products', 'index');
+        Route::get('products/create', 'create');
+        Route::post('products/store', 'store');
+        Route::get('products/{products}/edit', 'edit');
+        Route::post('products/{products}/update', 'update');
+        Route::any('products/{products}/delete', 'delete');
+    });
 });
