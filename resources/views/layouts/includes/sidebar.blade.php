@@ -13,6 +13,18 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/brands') }}">
+              <i class="mdi mdi-emoticon menu-icon"></i>
+              <span class="menu-title">Brands</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/products') }}">
+              <i class="mdi mdi-emoticon menu-icon"></i>
+              <span class="menu-title">Products</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="mdi mdi-circle-outline menu-icon"></i>
               <span class="menu-title">UI Elements</span>
