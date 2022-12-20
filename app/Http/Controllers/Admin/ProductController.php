@@ -41,7 +41,7 @@ class ProductController extends Controller
 
                 $product->productImages()->create([
                     'product_id' => $product->id,
-                    'images' => $name,
+                    'image' => $name,
                 ]);
             }
             // return 'Image Created';

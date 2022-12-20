@@ -166,8 +166,8 @@
                             <div class="tab-pane fade border p-3" id="product_images" role="tabpanel"
                                 aria-labelledby="product_images-tab">
                                 <div class="mb-3 mt-3 col-md-6">
-                                    <label for="images">Select Images</label><br />
-                                    <input type="file" multiple class="form-control" name="images[]">
+                                    <label for="image">Select Images</label><br />
+                                    <input type="file" multiple class="form-control" name="image[]">
                                 </div>
 
                             </div>
