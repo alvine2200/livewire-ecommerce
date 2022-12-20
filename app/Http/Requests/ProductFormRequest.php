@@ -38,7 +38,7 @@ class ProductFormRequest extends FormRequest
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',
             'meta_keyword' => 'required|string',
-            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:7000',
+            'images' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:7000',
         ];
     }
 }

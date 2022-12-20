@@ -167,7 +167,7 @@
                                 aria-labelledby="product_images-tab">
                                 <div class="mb-3 mt-3 col-md-6">
                                     <label for="image">Select Images</label><br />
-                                    <input type="file" multiple class="form-control" name="image[]">
+                                    <input type="file" multiple name="image[]" class="form-control">
                                 </div>
 
                             </div>

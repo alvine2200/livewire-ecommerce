@@ -31,12 +31,13 @@ class ProductController extends Controller
         $valid['status'] = $request->status == true ? '1' : '0';
 
         $category = Category::findOrFail($valid['category_id']);
-        // $brand = Brand::findOrFail($valid['brand_id']);
         $product = $category->products()->create($valid);
 
-        if ($request->hasFile('image')) {
+        if ($request->image) {
             foreach ($request->file('image') as $imagefile) {
-                $name = time() . $imagefile->getClientOriginalName();
+                $name = time() .  $imagefile->getClientOriginalName();
+                // $name = time() . uniqid() . '.' . $imagefile->getClientOriginalExtension();
+                // dd($name);
                 $imagefile->move('Uploads/Products', $name);
 
                 $product->productImages()->create([
@@ -44,7 +45,6 @@ class ProductController extends Controller
                     'image' => $name,
                 ]);
             }
-            // return 'Image Created';
         }
         return redirect('admin/products')->with('success', 'New Product added Successfully');
     }

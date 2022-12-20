@@ -14,7 +14,7 @@ class ProductImage extends Model
 
     protected $fillable = [
         'product_id',
-        'images'
+        'image'
     ];
 
     public function products(): BelongsTo
