@@ -30,7 +30,7 @@ class CategoryController extends Controller
             $image->move('Uploads/Category', $name);
         }
 
-        $category = Category::create([
+        Category::create([
             'name' => $valid['name'],
             'slug' => Str::slug($valid['slug']),
             'status' => $request->status == true ? '1' : '0',
@@ -40,7 +40,6 @@ class CategoryController extends Controller
             'meta_description' => $valid['meta_description'],
             'description' => $valid['description'],
         ]);
-        // dd($category);
         return redirect('admin/category')->with('success', 'Category added successfully');
     }
 
@@ -91,8 +90,8 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        $category=Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->delete();
-        return back()->with('success','Category deleted successfully');
+        return back()->with('success', 'Category deleted successfully');
     }
 }

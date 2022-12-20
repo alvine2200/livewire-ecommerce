@@ -33,11 +33,12 @@ class ProductFormRequest extends FormRequest
             'original_price' => 'required|integer',
             'selling_price' => 'required|integer',
             'quantity' => 'required|integer',
-            'trending' => 'integer',
-            'status' => 'integer',
+            'trending' => 'nullable',
+            'status' => 'nullable',
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',
             'meta_keyword' => 'required|string',
+            'images' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:7000',
         ];
     }
 }

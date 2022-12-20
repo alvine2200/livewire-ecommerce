@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+@include('layouts.includes.status')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -8,12 +9,6 @@
                     <a href="{{ url('admin/products') }}" class="btn btn-danger  btn-sm float-end text-white">Back</a>
                 </div>
                 <div class="card-body">
-                    @if($errors->any())
-                    @foreach ($errors as $error)
-                        <p style="color:red;">{{ $error }}</p>
-                    @endforeach
-                    
-                    @endif
                     <form action="{{ url('admin/products/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Nav tabs -->
@@ -41,7 +36,7 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane fade border p-3 active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="tab-pane  active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="mb-3 mt-3">
                                     <label class="mb-2" for="category">Category</label>
                                     <select name="category_id" class="form-control" id="">
@@ -55,22 +50,22 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="">Product Name</label>
+                                    <label for="name">Product Name</label>
                                     <input type="text" name="name" class="form-control" id="">
                                     @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="">Product Slug</label>
+                                    <label for="slug">Product Slug</label>
                                     <input type="text" name="slug" class="form-control" id="">
                                     @error('slug')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <label class="mb-2" for="brand">Select Brand</label>
-                                    <select name="brand" class="form-control" id="">
+                                    <label class="mb-2" for="brand_id">Select Brand</label>
+                                    <select name="brand_id" class="form-control" id="">
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                         @endforeach
@@ -80,21 +75,22 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="">Small Description (< 500 Words)</label>
-                                            <textarea type="text" name="small_description" class="form-control" rows="3"></textarea>
-                                            @error('small_description')
+                                    <label for="small-description">Small Description (< 500 Words)</label>
+                                            <textarea type="text" name="small-description" class="form-control" rows="3"></textarea>
+                                            @error('small-description')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="">Description</label>
+                                    <label for="description">Description</label>
                                     <textarea type="text" name="description" class="form-control" rows="3"></textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="tab-pane fade border p-3" id="seo-tags" role="tabpanel" aria-labelledby="seo-tags-tab">
+                            <div class="tab-pane fade border p-3" id="seo-tags" role="tabpanel"
+                                aria-labelledby="seo-tags-tab">
                                 <div class="mb-3 mt-3">
                                     <label for="meta_title">Meta_title</label>
                                     <input type="text" name="meta_title" class="form-control" id="">
@@ -117,7 +113,8 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="tab-pane fade border p-3" id="details" role="tabpanel" aria-labelledby="details-tab">
+                            <div class="tab-pane fade border p-3" id="details" role="tabpanel"
+                                aria-labelledby="details-tab">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mt-3 mb-3">
@@ -169,8 +166,8 @@
                             <div class="tab-pane fade border p-3" id="product_images" role="tabpanel"
                                 aria-labelledby="product_images-tab">
                                 <div class="mb-3 mt-3 col-md-6">
-                                    <label for="image">Select Images</label><br/>
-                                    <input type="file" multiple class="form-control" name="image">
+                                    <label for="images">Select Images</label><br />
+                                    <input type="file" multiple class="form-control" name="images[]">
                                 </div>
 
                             </div>
