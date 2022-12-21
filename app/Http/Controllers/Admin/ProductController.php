@@ -104,4 +104,19 @@ class ProductController extends Controller
             return back()->with('success', 'Image Removed Successfully');
         }
     }
+
+    public function delete($product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        if ($product->productImages()) {
+            foreach ($product->productImages() as $images) {
+                $path = 'Uploads/Products/' . $images->image;
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
+            }
+        }
+        $product->delete();
+        return back()->with('success', 'Product Deleted with its Images');
+    }
 }
