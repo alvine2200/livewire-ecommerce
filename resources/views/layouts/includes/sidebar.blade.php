@@ -7,12 +7,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('admin/category') }}">
-              <i class="mdi mdi-emoticon menu-icon"></i>
-              <span class="menu-title">Category</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/brands') }}">
               <i class="mdi mdi-emoticon menu-icon"></i>
               <span class="menu-title">Brands</span>
@@ -30,6 +24,18 @@
                 <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products') }}">View Products</a></li>
               </ul>
             </div>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/category') }}">
+              <i class="mdi mdi-emoticon menu-icon"></i>
+              <span class="menu-title">Category</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/colors') }}">
+              <i class="mdi mdi-emoticon menu-icon"></i>
+              <span class="menu-title">Color</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">

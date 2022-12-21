@@ -48,7 +48,7 @@
                                     <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->original_price }}</td>
                                     <td>{{ $product->selling_price }}</td>
-                                    <td>{{ $product->status === '1' ? 'Hidden' : 'Visible' }}</td>
+                                    <td>{{ $product->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
                                         <a href="{{ url('admin/products/' . $product->id . '/edit') }}"
                                             class="btn btn-sm btn-info">Edit</a> |
