@@ -50,5 +50,6 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('products/{products}/edit', 'edit');
         Route::post('products/{products}/update', 'update');
         Route::any('products/{products}/delete', 'delete');
+        Route::any('products/{products}/remove_image', 'remove');
     });
 });

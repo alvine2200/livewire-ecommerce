@@ -32,33 +32,34 @@
                                     <td>
                                         @if ($product->categories)
                                             {{ $product->categories->name }}
+                                        @else
+                                            No Category
+                                        @endif
                                     </td>
-                                @else
-                                    No Category
-                            @endif
+                                    <td>
+                                        @if ($product->brands)
+                                            {{ $product->brands->name }}
+                                        @else
+                                            No Brand
+                                        @endif
+                                    </td>
 
-                            <td>
-                                @if ($product->brands)
-                                    {{ $product->brands->name }}
-                                @else
-                                    No Brand
-                                @endif
-                            </td>
-
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->quantity }}</td>
-                            <td>{{ $product->original_price }}</td>
-                            <td>{{ $product->selling_price }}</td>
-                            <td>{{ $product->status === '1' ? 'Hidden' : 'Visible' }}</td>
-                            <td>
-                                <a href="{{ url('admin/products/'.$product->id.'/edit') }}" class="btn btn-sm btn-info">Edit</a> |
-                                <a href="{{ url('admin/products/'.$product->id.'/delete') }}" class="btn btn-sm btn-danger">Delete</a>
-                            </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7"> Not Product Available</td>
-                            </tr>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->quantity }}</td>
+                                    <td>{{ $product->original_price }}</td>
+                                    <td>{{ $product->selling_price }}</td>
+                                    <td>{{ $product->status === '1' ? 'Hidden' : 'Visible' }}</td>
+                                    <td>
+                                        <a href="{{ url('admin/products/' . $product->id . '/edit') }}"
+                                            class="btn btn-sm btn-info">Edit</a> |
+                                        <a href="{{ url('admin/products/' . $product->id . '/delete') }}"
+                                            class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7"> Not Product Available</td>
+                                </tr>
                             @endforelse
 
                         </tbody>

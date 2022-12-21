@@ -40,12 +40,15 @@
                             <div class="tab-pane  active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="mb-3 mt-3">
                                     <label class="mb-2" for="category">Category</label>
-                                    <select name="category_id" class="form-control" id="">
+                                    <select name="category_id" class="form-control">
                                         @foreach ($categories as $category)
-                                            <option class="form-control" value="{{ $product->category_id }}"
+                                            <option value="{{ $product->category_id }}"
+                                                {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                                                {{ $category->name }}</option>
+                                            {{-- <option value="{{ $product->categories->id }}"
                                                 {{ $category->id == $product->category_id ? 'selected' : '' }}>
                                                 {{ $category->name }}
-                                            </option>
+                                            </option> --}}
                                         @endforeach
                                     </select>
                                     @error('category_id')
@@ -181,16 +184,20 @@
                                 <div class="mb-3 mt-3 ">
                                     <label for="image">Select Images</label><br />
                                     <input type="file" multiple name="image[]" class="form-control">
-                                    <div class="mt-3 mb-3">
-                                        @if ($relation = $product->productImages)
+                                    @if ($relation = $product->productImages)
+                                        <div class="mt-3 row mb-3">
                                             @foreach ($relation as $img)
-                                                <img style="width:200px; height:120px; padding:10px;" alt="image"
-                                                    src="{{ asset('Uploads/Products/' . "$img->image") }}">
+                                                <div class="col-md-2 text-center d-grid align-items-center">
+                                                    <img style="width:150px; height:80px; padding:3px;" alt="image"
+                                                        src="{{ asset('Uploads/Products/' . "$img->image") }}">
+                                                        <a class="btn btn-sm btn-danger mt-2 text-white" onclick="return confirm('Are You sure you want to remove this Image?')" href="{{ url('admin/products/'.$img->id.'/remove_image') }}">Remove</a>
+                                                </div>
                                             @endforeach
-                                        @else
-                                            <h4>No Images Found</h4>
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @else
+                                        <h4>No Images Found</h4>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
