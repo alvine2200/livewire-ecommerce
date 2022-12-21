@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@include('layouts.includes.status')
+    @include('layouts.includes.status')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -31,6 +31,11 @@
                                 <button class="nav-link" id="product_images-tab" data-bs-toggle="tab"
                                     data-bs-target="#product_images" type="button" role="tab"
                                     aria-controls="product_images" aria-selected="false">Product Images</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="product_colors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#product_colors" type="button" role="tab"
+                                    aria-controls="product_colors" aria-selected="false">Product Color</button>
                             </li>
                         </ul>
 
@@ -169,7 +174,29 @@
                                     <label for="image">Select Images</label><br />
                                     <input type="file" multiple name="image[]" class="form-control">
                                 </div>
+                            </div>
+                            <div class="tab-pane fade border p-3" id="product_colors" role="tabpanel"
+                                aria-labelledby="product_colors-tab">
+                                <div class="mb-3 mt-3 col-md-12">
+                                    <label for="colors">Select Product Colors</label><br />
+                                    <div class="row">
+                                        @forelse ($colors as $color)
+                                            <div class="col-md-3">
+                                                <div class="p-2 border mb-3">
+                                                    Color: <input class="mb-3" type="checkbox" name="colors[{{ $color->id }}]"
+                                                        value="{{ $color->id }}">{{ $color->name }}<br />
+                                                    Quantity: <input type="number" name="colorquantity[{{ $color->id }}]"
+                                                        style="width: 70px; border:1px solid grey;">
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div>
+                                                No Color Found
+                                            </div>
+                                        @endforelse
 
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="add_product mt-3">

@@ -33,6 +33,11 @@
                                     data-bs-target="#product_images" type="button" role="tab"
                                     aria-controls="product_images" aria-selected="false">Product Images</button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="product_colors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#product_colors" type="button" role="tab"
+                                    aria-controls="product_colors" aria-selected="false">Product Color</button>
+                            </li>
                         </ul>
 
                         <!-- Tab panes -->
@@ -190,7 +195,9 @@
                                                 <div class="col-md-2 text-center d-grid align-items-center">
                                                     <img style="width:150px; height:80px; padding:3px;" alt="image"
                                                         src="{{ asset('Uploads/Products/' . "$img->image") }}">
-                                                        <a class="btn btn-sm btn-danger mt-2 text-white" onclick="return confirm('Are You sure you want to remove this Image?')" href="{{ url('admin/products/'.$img->id.'/remove_image') }}">Remove</a>
+                                                    <a class="btn btn-sm btn-danger mt-2 text-white"
+                                                        onclick="return confirm('Are You sure you want to remove this Image?')"
+                                                        href="{{ url('admin/products/' . $img->id . '/remove_image') }}">Remove</a>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -198,6 +205,70 @@
                                         <h4>No Images Found</h4>
                                     @endif
 
+                                </div>
+                            </div>
+                            <div class="tab-pane fade border p-3" id="product_colors" role="tabpanel"
+                                aria-labelledby="product_colors-tab">
+                                <div class="mb-3 mt-3 col-md-12">
+                                    <label for="colors">Select Product Colors</label><br />
+                                    <div class="row">
+                                        @forelse ($colors as $color)
+                                            <div class="col-md-3">
+                                                <div class="p-2 border mb-3">
+                                                    Color: <input class="mb-3" type="checkbox"
+                                                        name="colors[{{ $color->id }}]"
+                                                        value="{{ $color->id }}">{{ $color->name }}<br />
+                                                    Quantity: <input type="number"
+                                                        name="colorquantity[{{ $color->id }}]"
+                                                        style="width: 70px; border:1px solid grey;">
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div>
+                                                No Color Found
+                                            </div>
+                                        @endforelse
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Color Name</th>
+                                                <th>Quantity</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($product->productColors as $prodColor)
+                                                <tr>
+                                                    <td>
+                                                        @if ($prodColor->colors)
+                                                            {{ $prodColor->colors->name }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group mb-3">
+                                                            <input class="form-control form-control-sm"
+                                                                value="{{ $prodColor->quantity }}" style="width: 150px"
+                                                                type="text">
+                                                            <button type="button" value="{{ $prodColor->id }}"
+                                                                class="btn btn-sm btn-primary text-white">Update</button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" value="{{ $prodColor->id }}"
+                                                            class="btn btn-sm btn-danger text-white">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="3">No table data</td>
+                                                </tr>
+                                            @endforelse
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

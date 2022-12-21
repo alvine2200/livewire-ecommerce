@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Color;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.products.create', compact('categories', 'brands'));
+        $colors = Color::where('status', '0')->get();
+        return view('admin.products.create', compact('categories', 'brands', 'colors'));
     }
 
     public function store(ProductFormRequest $request)
@@ -40,13 +42,21 @@ class ProductController extends Controller
         if ($request->image) {
             foreach ($request->file('image') as $imagefile) {
                 $name = time() .  $imagefile->getClientOriginalName();
-                // $name = time() . uniqid() . '.' . $imagefile->getClientOriginalExtension();
-                // dd($name);
                 $imagefile->move('Uploads/Products', $name);
 
                 $product->productImages()->create([
                     'product_id' => $product->id,
                     'image' => $name,
+                ]);
+            }
+        }
+
+        if ($request->colors) {
+            foreach ($request->colors as $key => $color) {
+                $product->productColors()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'quantity' => $request->colorquantity[$key] ?? 0
                 ]);
             }
         }
@@ -59,7 +69,9 @@ class ProductController extends Controller
         $small_description = $product['small-description'];
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.products.edit', compact('product', 'categories', 'brands', 'small_description'));
+        $productColor = $product->productColors->pluck('color_id')->toArray();
+        $colors = Color::whereNotIn('id', $productColor)->get();
+        return view('admin.products.edit', compact('product', 'categories', 'brands', 'small_description', 'colors'));
     }
 
     public function update(ProductFormRequest $request, $id)
