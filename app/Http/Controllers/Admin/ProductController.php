@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductFormRequest;
 use App\Models\Color;
+use App\Models\ProductColor;
 
 class ProductController extends Controller
 {
@@ -130,5 +131,24 @@ class ProductController extends Controller
         }
         $product->delete();
         return back()->with('success', 'Product Deleted with its Images');
+    }
+
+    public function updateProductColorQuantity(Request $request, $prod_color_id)
+    {
+        $prod_color = Product::findOrFail($request->product_id)
+            ->productColors()->where('id', $prod_color_id)->first();
+
+        if ($prod_color) {
+            $prod_color->update([
+                'quantity' => $request->prod_qty
+            ]);
+            return response()->json([
+                'message' => 'Product Color Quantity Updated'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product Color Not Found'
+            ]);
+        }
     }
 }

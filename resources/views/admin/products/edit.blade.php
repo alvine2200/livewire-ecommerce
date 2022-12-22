@@ -241,7 +241,7 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($product->productColors as $prodColor)
-                                                <tr>
+                                                <tr class="product_color_tr">
                                                     <td>
                                                         @if ($prodColor->colors)
                                                             {{ $prodColor->colors->name }}
@@ -249,16 +249,17 @@
                                                     </td>
                                                     <td>
                                                         <div class="input-group mb-3">
-                                                            <input class="form-control form-control-sm"
+                                                            <input
+                                                                class="form-control form-control-sm ProductColorQuantity"
                                                                 value="{{ $prodColor->quantity }}" style="width: 150px"
                                                                 type="text">
                                                             <button type="button" value="{{ $prodColor->id }}"
-                                                                class="btn btn-sm btn-primary text-white">Update</button>
+                                                                class="updateProductColorBtn btn btn-sm btn-primary text-white">Update</button>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <button type="button" value="{{ $prodColor->id }}"
-                                                            class="btn btn-sm btn-danger text-white">Delete</button>
+                                                            class="deleteProductColorBtn btn btn-sm btn-danger text-white">Delete</button>
                                                     </td>
                                                 </tr>
                                             @empty
@@ -279,6 +280,45 @@
                 </div>
             </div>
         </div>
-
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '.updateProductColorBtn', function() {
+                var prod_color_id = $(this).val();
+
+                var product_id = "{{ $product->id }}";
+                var prod_qty = $(this).closest('.product_color_tr').find('.ProductColorQuantity').val();
+                // alert(prod_qty);
+
+                if (prod_qty <= 0) {
+                    alert('Quantity is required')
+                    return false;
+                }
+                var data = {
+                    'product_id': product_id,
+                    'prod_color_id': prod_color_id,
+                    'prod_qty': prod_qty,
+                };
+
+                console.log(data);
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/product_color/' + prod_color_id,
+                    data: data,
+                    success: function(response) {
+                        alert(response.message)
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
