@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ColorsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductController;
 
 /*
@@ -65,5 +66,16 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('colors/{colors}/update', 'update');
         Route::any('colors/{colors}/delete', 'delete');
         Route::any('colors/{colors}/remove_image', 'remove');
+    });
+
+    //admin home-slider crud
+    Route::controller(HomeSliderController::class)->group(function () {
+        Route::get('slider', 'index');
+        Route::get('slider/create', 'create');
+        Route::post('slider/store', 'store');
+        Route::get('slider/{slider}/edit', 'edit');
+        Route::post('slider/{slider}/update', 'update');
+        Route::any('slider/{slider}/delete', 'delete');
+        Route::any('slider/{slider}/remove_image', 'remove');
     });
 });
