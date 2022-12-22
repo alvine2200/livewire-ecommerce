@@ -285,7 +285,6 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -294,7 +293,6 @@
 
             $(document).on('click', '.updateProductColorBtn', function() {
                 var prod_color_id = $(this).val();
-
                 var product_id = "{{ $product->id }}";
                 var prod_qty = $(this).closest('.product_color_tr').find('.ProductColorQuantity').val();
                 // alert(prod_qty);
@@ -309,7 +307,7 @@
                     'prod_qty': prod_qty,
                 };
 
-                console.log(data);
+                // console.log(data);
                 $.ajax({
                     type: 'POST',
                     url: '/admin/product_color/' + prod_color_id,
@@ -318,7 +316,25 @@
                         alert(response.message)
                     }
                 });
-            });
+            }); 
+            $(document).on('click', '.deleteProductColorBtn', function() {
+                var prod_color_id = $(this).val(); 
+                var thisClick=$(this);
+
+                // thisClick.closest('.product_color_tr').remove();
+                // alert('Row removed');
+                
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/product_color/' + prod_color_id+'/delete',
+                    success: function(response) {
+                        thisClick.closest('.product_color_tr').remove();
+                        alert(response.message);
+                    }
+                });
+                
+            });         
         });
+
     </script>
 @endsection

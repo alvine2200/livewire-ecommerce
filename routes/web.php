@@ -53,6 +53,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::any('products/{products}/delete', 'delete');
         Route::any('products/{products}/remove_image', 'remove');
         Route::post('product_color/{prod_color_id}', 'updateProductColorQuantity');
+        Route::any('product_color/{prod_color_id}/delete', 'deleteProductColor');
     });
 
     //admin color crud

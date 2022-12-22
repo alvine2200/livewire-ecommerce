@@ -101,6 +101,15 @@ class ProductController extends Controller
                     ]);
                 }
             }
+            if ($request->colors) {
+                foreach ($request->colors as $key => $color) {
+                    $product->productColors()->create([
+                        'product_id' => $product->id,
+                        'color_id' => $color,
+                        'quantity' => $request->colorquantity[$key] ?? 0
+                    ]);
+                }
+            }
             return redirect('admin/products')->with('success', 'Product updated Successfully');
         } else {
             return redirect('admin/products')->with('status', 'Id Not Found');
@@ -150,5 +159,14 @@ class ProductController extends Controller
                 'message' => 'Product Color Not Found'
             ]);
         }
+    }
+
+    public function deleteProductColor($product_color_id)
+    {
+        $product_id = ProductColor::findOrFail($product_color_id);
+        $product_id->delete();
+        return response()->json([
+            'message' => 'Product Color Deleted'
+        ]);
     }
 }
