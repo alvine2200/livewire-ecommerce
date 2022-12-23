@@ -23,9 +23,12 @@ use App\Http\Controllers\Home\FrontendController;
 
 Auth::routes();
 
-Route::controller(FrontendController::class)->group(function(){
-    Route::get('/','index');
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('collections', 'categories');
+    Route::get('collections/{slug}', 'products');
 });
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
