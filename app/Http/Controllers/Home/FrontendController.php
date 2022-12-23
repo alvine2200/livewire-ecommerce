@@ -31,4 +31,9 @@ class FrontendController extends Controller
             return back();
         }
     }
+
+    public function productDetails($category_slug,$product_slug)
+    {
+         
+    }
 }

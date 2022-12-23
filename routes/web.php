@@ -27,6 +27,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('collections', 'categories');
     Route::get('collections/{slug}', 'products');
+    Route::get('collections/{category_slug}/{peoduct_slug}', 'productDetails');
 });
 
 
