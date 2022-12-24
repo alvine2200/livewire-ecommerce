@@ -20,10 +20,16 @@ class Category extends Model
         'meta_title',
         'meta_keyword',
         'meta_description',
+
     ];
 
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function brands(): HasMany
+    {
+        return $this->hasMany(Brand::class, 'category_id', 'id');
     }
 }

@@ -32,8 +32,7 @@ class FrontendController extends Controller
         }
     }
 
-    public function productDetails($category_slug,$product_slug)
+    public function productDetails($category_slug, $product_slug)
     {
-         
     }
 }
