@@ -17,6 +17,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Slug</th>
+                                <th>Category</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -26,8 +27,14 @@
                                 <tr>
                                     <td>{{ $brand->id }}</td>
                                     <td>{{ $brand->name }}</td>
-                                    <td>{{ $brand->slug }}</td>
-                                    <td>{{ $brand->status === '1' ? 'Hidden' : 'Visible' }}</td>
+                                    <td>{{ $brand->slug }}</td>                                    
+                                    <td>
+                                        @if ($brand->categories)
+                                            {{ $brand->categories->name }}
+                                        @else
+                                            No Category Found
+                                        @endif</td>
+                                    <td>{{ $brand->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
                                         <a href="#" wire:click="editBrand({{ $brand->id }})" data-bs-toggle="modal" data-bs-target="#editBrandModal"
                                             class="btn btn-sm btn-info">Edit</a>|

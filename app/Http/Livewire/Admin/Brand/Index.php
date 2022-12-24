@@ -21,7 +21,7 @@ class Index extends Component
             'name' => 'required|string',
             'slug' => 'required|string',
             'status' => 'nullable',
-            'category_id' => 'required'
+            'category_id' => 'required|exists:categories,id'
         ];
     }
 

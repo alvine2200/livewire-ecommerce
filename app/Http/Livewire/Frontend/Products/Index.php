@@ -2,19 +2,25 @@
 
 namespace App\Http\Livewire\Frontend\Products;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class Index extends Component
 {
-    public $products, $category;
+    public $products, $category, $brandsInput = [];
 
-    public function mounts($products, $category)
+    protected $queryString = ['brandsInput' => ['except' => '', 'as' => 'brand']];
+    public function mounts($category)
     {
-        $this->products = $products;
         $this->category = $category;
     }
     public function render()
     {
+        $this->products = Product::where('category_id', $this->category->id)
+            ->when($this->brandsInput, function ($query) {
+                $query->whereIn('brand_id', $this->brandsInput);
+            })
+            ->where('status', '0')->get();
         return view('livewire.frontend.products.index', [
             'products' => $this->products,
             'category' => $this->category,

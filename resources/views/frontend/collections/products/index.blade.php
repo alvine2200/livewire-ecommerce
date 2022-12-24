@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     <h4 class="mb-4">Our Products</h4>
                 </div>
-                <livewire:frontend.products.index :category="$category" :products="$products" />
+                <livewire:frontend.products.index :category="$category"/>
 
 
             </div>
