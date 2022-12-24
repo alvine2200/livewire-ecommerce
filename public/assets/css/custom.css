@@ -776,9 +776,6 @@ select {
 }
 
 @media (max-width: 991px) {
-    html {
-        font-size: 55%;
-    }
     header {
         padding: 1rem 2rem;
     }
@@ -822,9 +819,6 @@ select {
 }
 
 @media (max-width: 991px) {
-    html {
-        font-size: 50%;
-    }
     .dishes .box-container .box img {
         height: auto;
         width: 100%;
@@ -832,9 +826,6 @@ select {
 }
 
 @media (max-width: 445px) {
-    html {
-        font-size: 50%;
-    }
     .dishes .box-container .box img {
         height: auto;
         width: 100%;

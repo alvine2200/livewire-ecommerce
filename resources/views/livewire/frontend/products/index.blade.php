@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @if ($category->brands)
                         @forelse ($category->brands as $brandItem)
-                            <label class="d-block" for="brands">
+                            <label class="d-block p-2" for="brands">
                                 <input wire:model="brandsInput" value="{{ $brandItem->id }}" type="checkbox"> {{ $brandItem->name }}
                             </label>
                         @empty
