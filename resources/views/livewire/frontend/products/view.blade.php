@@ -1,5 +1,6 @@
 <div>
     <div class="row">
+        @include('layouts.includes.status')
         <div class="py-3 py-md-5 bg-light product_card">
             <div class="container">
                 <div class="row">
@@ -41,9 +42,11 @@
                                     @endif
                                     <div>
                                         @if ($this->productQuantity == 'outOfStock')
-                                            <label class="stock py-1 mt-2 btn-sm text-white bg-danger"> Out Of Stock</label>
+                                            <label class="stock py-1 mt-2 btn-sm text-white bg-danger"> Out Of
+                                                Stock</label>
                                         @elseif($this->productQuantity > 0)
-                                            <label class="stock py-1 mt-2 btn-sm text-white bg-success"> In Stock</label>
+                                            <label class="stock py-1 mt-2 btn-sm text-white bg-success"> In
+                                                Stock</label>
                                         @endif
                                     </div>
                                 @else
@@ -67,7 +70,13 @@
                             </div>
                             <div class="mt-2">
                                 <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
-                                <a href="" class="btn btn1"> <i class="fa fa-heart"></i> Add To Wishlist </a>
+                                <button type="button" wire:click="addToWishList({{ $products->id }})" class="btn btn1">
+                                    <span wire:loading.remove>
+                                        <i class="fa fa-heart"></i> Add To Wishlist
+                                    </span>
+                                    <span wire:loading wire:target="addToWishList">Adding to wishlist ...
+                                    </span>
+                                </button>
                             </div>
                             <div class="mt-3">
                                 <h5 class="mb-0"> Small Description</h5>

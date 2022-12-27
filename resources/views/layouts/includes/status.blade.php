@@ -6,11 +6,18 @@
 @endif
 
 @if ($message = Session::get('status'))
+<div class="alert alert-info alert-block alert-dismissible fade show text-align-center" role="alert">
+  {{ $message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+{{-- @if ($message = Session::get('status'))
 <div id="flash_alert" class="alert  alert-info alert-block ">
     <strong>{{ $message }}</strong>
     <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"></button>       
 </div>
-@endif
+@endif --}}
 
 @if ($message = Session::get('message'))
 <div id="flash_alert" class="alert  alert-seconda alert-block ">

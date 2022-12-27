@@ -13,6 +13,11 @@
     <meta name="keyword" content="@yield('meta_keyword')">
     <meta name="description" content="@yield('meta_description')">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,11 +33,18 @@
 <body>
     <div id="app">
         @include('layouts.includes.frontend.navbar')
-
         <main>
             @yield('content')
         </main>
     </div>
+    <!-- alertify JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        window.addEventListener('status', event => {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.notify(event.detail.text,event.detail.type,5);
+        });
+    </script>
     @livewireScripts()
 </body>
 
