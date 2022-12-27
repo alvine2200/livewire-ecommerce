@@ -161,12 +161,12 @@
 }
 
 /* Funda of web it styles */
-/* html {
+html {
     font-size: 62.5%;
     overflow-x: hidden;
     scroll-padding-top: 5.5rem;
     scroll-behavior: smooth;
-} */
+}
 section {
     padding: 2rem 9%;
 }

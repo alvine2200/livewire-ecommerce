@@ -9,7 +9,8 @@
                     @if ($category->brands)
                         @forelse ($category->brands as $brandItem)
                             <label class="d-block p-2" for="brands">
-                                <input wire:model="brandsInput" value="{{ $brandItem->id }}" type="checkbox"> {{ $brandItem->name }}
+                                <input wire:model="brandsInput" value="{{ $brandItem->id }}" type="checkbox">
+                                {{ $brandItem->name }}
                             </label>
                         @empty
                             <h6>No Brands just Yet</h6>
@@ -19,8 +20,20 @@
                             <input type="checkbox"> No Brand List
                         </label>
                     @endif
+                </div>
+            </div>
 
-
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4>Price</h4>
+                </div>
+                <div class="card-body">
+                    <label class="d-block p-2" for="brands">
+                        <input name="priceSort" wire:model="priceInput" value="high-to-low" type="radio"> High-to-low
+                    </label>
+                    <label class="d-block p-2" for="brands">
+                        <input name="priceSort" wire:model="priceInput" value="low-to-high" type="radio"> Low-to-High
+                    </label>
                 </div>
             </div>
         </div>
