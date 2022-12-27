@@ -6,9 +6,10 @@
                     <div class="col-md-5 mt-3">
                         <div class="bg-white border">
                             @if ($products->productImages)
-                            <img src="{{ asset('Uploads/Products/'.$products->productImages[0]->image) }}" class="w-100" alt="Img">                                
+                                <img src="{{ asset('Uploads/Products/' . $products->productImages[0]->image) }}"
+                                    class="w-100" alt="Img">
                             @else
-                                No Images, Upload 
+                                No Images, Upload
                             @endif
                         </div>
                     </div>
@@ -16,13 +17,7 @@
                         <div class="product-view">
                             <h4 class="product-name">
                                 {{ $products->name }}
-                                <label class="label-stock bg-success">
-                                    @if ($products->quantity > 0)
-                                        <label class="stock bg-success"> In Stock</label>
-                                    @else
-                                        <label class="stock"> Out Of Stock</label>
-                                    @endif
-                                </label>
+
                             </h4>
                             <hr>
                             <p class="product-path">
@@ -33,12 +28,34 @@
                                 <span class="original-price">${{ $products->original_price }}</span>
                             </div>
                             <div>
-                                @if ($products->productColors)
-                                    @foreach ($products->productColors as $prodColor)
-                                        <input type="radio"  name="colorSelection" value="{{ $prodColor->id }}"> {{ $prodColor->colors->name }}
-                                    @endforeach                             
+                                @if ($products->productColors->count() > 0)
+                                    @if ($products->productColors)
+                                        @foreach ($products->productColors as $prodColor)
+                                            {{-- <input type="radio" name="colorSelection" value="{{ $prodColor->id }}">
+                                            {{ $prodColor->colors->name }} --}}
+                                            <label class="colorSelected text-white p-2 m-3" for="colorselected"
+                                                style="background-color:{{ $prodColor->colors->code }}"
+                                                wire:click="handleColorSelected({{ $prodColor->id }})">{{ $prodColor->colors->name }}
+                                            </label>
+                                        @endforeach
+                                    @endif
+                                    <div>
+                                        @if ($this->productQuantity == 'outOfStock')
+                                            <label class="stock py-1 mt-2 btn-sm text-white bg-danger"> Out Of Stock</label>
+                                        @elseif($this->productQuantity > 0)
+                                            <label class="stock py-1 mt-2 btn-sm text-white bg-success"> In Stock</label>
+                                        @endif
+                                    </div>
                                 @else
-                                    
+                                    <div>
+                                        <label class="label-stock mt-2">
+                                            @if ($products->quantity)
+                                                <label class="stock bg-success"> In Stock</label>
+                                            @else
+                                                <label class="stock bg-danger"> Out Of Stock</label>
+                                            @endif
+                                        </label>
+                                    </div>
                                 @endif
                             </div>
                             <div class="mt-2">
