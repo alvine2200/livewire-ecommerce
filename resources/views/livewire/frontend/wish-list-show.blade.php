@@ -11,10 +11,10 @@
                         <div class="col-md-2">
                             <h4>Price</h4>
                         </div>
-                        <div class="col-md-2">
+                        {{-- <div class="col-md-2">
                             <h4>Quantity</h4>
-                        </div>
-                        <div class="col-md-2">
+                        </div> --}}
+                        <div class="col-md-4">
                             <h4>Remove</h4>
                         </div>
                     </div>
@@ -25,7 +25,8 @@
                         <div class="cart-item shadow">
                             <div class="row">
                                 <div class="col-md-6 my-auto">
-                                    <a href="{{ url('collections/'.$wishlistItem->products->categories->slug.'/'.$wishlistItem->products->slug) }}">
+                                    <a
+                                        href="{{ url('collections/' . $wishlistItem->products->categories->slug . '/' . $wishlistItem->products->slug) }}">
                                         <label class="product-name">
                                             <img src="{{ asset('Uploads/Products/' . $wishlistItem->products->productImages[0]->image) }}"
                                                 style="width: 50px; height: 50px"
@@ -37,7 +38,7 @@
                                 <div class="col-md-2 my-auto">
                                     <label class="price">${{ $wishlistItem->products->selling_price }} </label>
                                 </div>
-                                <div class="col-md-2 col-7 my-auto">
+                                {{-- <div class="col-md-2 col-7 my-auto">
                                     <div class="quantity">
                                         <div class="input-group">
                                             <span class="btn btn1"><i class="fa fa-minus"></i></span>
@@ -45,13 +46,13 @@
                                             <span class="btn btn1"><i class="fa fa-plus"></i></span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-2 col-5 my-auto">
                                     <div class="remove">
-                                        <a href="{{ url('wishlist/' . $wishlistItem->id . '/remove') }}"
+                                        <button type="button" wire:click="removeWishList({{ $wishlistItem->id }})"
                                             class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i> Remove
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

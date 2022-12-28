@@ -35,6 +35,7 @@ class View extends Component
                 'user_id' => Auth::user()->id,
                 'product_id' => $product_id,
             ]);
+            $this->emit('wishlistUpdated');
             session()->flash('status', 'Product added successfully');
             $this->dispatchBrowserEvent('status', [
                 'text' => 'Product added successfully',
@@ -63,6 +64,7 @@ class View extends Component
     }
     public function render()
     {
+
         return view('livewire.frontend.products.view', [
             'products' => $this->products,
             'category' => $this->category,
