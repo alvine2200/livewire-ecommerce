@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class View extends Component
 {
-    public $category, $products, $productQuantity, $product_id;
+    public $category, $products, $productQuantity, $product_id, $QuantityCount = 1;
 
     public function mounts($category, $products, $product_id)
     {
@@ -16,7 +16,18 @@ class View extends Component
         $this->products = $products;
         $this->product_id = $product_id;
     }
-
+    public function decreementQuantity()
+    {
+        if ($this->QuantityCount > 1) {
+            $this->QuantityCount--;
+        }
+    }
+    public function increementQuantity()
+    {
+        if ($this->QuantityCount < 50) {
+            $this->QuantityCount++;
+        }
+    }
     public function addToWishList($product_id)
     {
         if (Auth::check()) {
