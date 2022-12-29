@@ -15,6 +15,19 @@ class CartListShow extends Component
         $this->cart_id = $cart_id;
     }
 
+    public function removeCartList($cart_id)
+    {
+        $cartFind = Cart::where('user_id', Auth::user()->id)->where('id', $cart_id)->first();
+        $cartFind->delete();
+        $this->emit('CartUpdated');
+        session()->flash('status', 'Cart Item removed successfully');
+        $this->dispatchBrowserEvent('status', [
+            'text' => 'Cart Item removed successfully',
+            'type' => 'success',
+            'status' => 200,
+        ]);
+        return back();
+    }
 
     public function render()
     {

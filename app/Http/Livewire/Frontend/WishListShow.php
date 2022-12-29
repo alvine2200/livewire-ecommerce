@@ -15,12 +15,12 @@ class WishListShow extends Component
     }
     public function removeWishList($wishlist_id)
     {
-        $wish = Wishlist::findOrFail($wishlist_id)->first();
+        $wish = Wishlist::where('user_id', Auth::user()->id)->where('id', $wishlist_id)->first();
         $wish->delete();
         $this->emit('wishlistUpdated');
-        session()->flash('status', 'Wishlist removed successfully');
+        session()->flash('status', 'Wishlist Item removed successfully');
         $this->dispatchBrowserEvent('status', [
-            'text' => 'Wishlist removed successfully',
+            'text' => 'Wishlist Item removed successfully',
             'type' => 'success',
             'status' => 200,
         ]);
