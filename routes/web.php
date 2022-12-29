@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\FrontendController;
 use App\Http\Controllers\Home\WishlistController;
 
@@ -33,6 +34,9 @@ Route::controller(FrontendController::class)->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'index');
+    });
+    Route::controller(CartController::class)->group(function () {
+        Route::get('view_cart', 'index');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
