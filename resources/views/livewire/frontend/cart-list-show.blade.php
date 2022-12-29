@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row mt-3 mb-3">
             <div class="card">
-                <div class="card-header m-3">
+                <div class="card-header">
                     <h2>My Cart</h2>
                 </div>
                 <div class="card-body">
@@ -18,11 +18,14 @@
                                         <div class="col-md-2">
                                             <h4>Color/No Color</h4>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-1">
                                             <h4>Price</h4>
                                         </div>
                                         <div class="col-md-2">
                                             <h4>Quantity</h4>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <h4>Total</h4>
                                         </div>
                                         <div class="col-md-2">
                                             <h4>Remove</h4>
@@ -49,18 +52,22 @@
                                                     <label class="price">{{ $cartlistItem->productColors?->colors?->name }}
                                                     </label>
                                                 </div>
-                                                <div class="col-md-2 my-auto">
+                                                <div class="col-md-1 my-auto">
                                                     <label class="price">${{ $cartlistItem->products?->selling_price }}
                                                     </label>
                                                 </div>
                                                 <div class="col-md-2 col-7 my-auto">
                                                     <div class="quantity">
                                                         <div class="input-group">
-                                                            <span class="btn btn1"><i class="fa fa-minus"></i></span>
+                                                            <button wire:loading.atr="disabled" wire:click="IncreementQuantity({{ $cartlistItem->id }})" class="btn btn1"><i class="fa fa-plus"></i></button>
                                                             <input type="text" value="{{ $cartlistItem->quantity }}" class="input-quantity" />
-                                                            <span class="btn btn1"><i class="fa fa-plus"></i></span>
+                                                            <button wire:loading.atr="disabled" wire:click="DecreementQuantity({{ $cartlistItem->id }})" class="btn btn1"><i class="fa fa-minus"></i></button>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-1 my-auto">
+                                                    <label class="price">${{ $cartlistItem->products?->selling_price * $cartlistItem->quantity  }}
+                                                    </label>
                                                 </div>
                                                 <div class="col-md-2 col-5 my-auto">
                                                     <div class="remove">
