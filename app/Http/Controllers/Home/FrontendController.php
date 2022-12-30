@@ -46,4 +46,9 @@ class FrontendController extends Controller
             return back();
         }
     }
+
+    public function thanks()
+    {
+        return view('frontend.thank_you');
+    }
 }

@@ -1,11 +1,10 @@
 <div>
     <div class="container">
-        <div class="row mt-3 mb-3">
+        <div  class="row mt-3 mb-3">
             <div class="card">
-                <div class="card-header">
-                    <h2>My Cart</h2>
-                </div>
-                <div class="card-body">
+                <div style="margin-bottom: 5rem; !important;" class="card-body">
+                    <h2 class="mt-3 mb-3">My Cart</h2>
+                    <hr>
                     <div class="row mt-5 m-5">
                         <div class="col-md-12">
                             <div class="shopping-cart">
@@ -98,9 +97,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8 mt-3 mb-3">
-                            <h4 class="float-end display-6">
+                            <h4 class="float-end">
                                 Get the best deals, Shop with us 
-                                <a class="btn btn-primary display-5 font-bold p-3"  href="{{ url('collections') }}">SHOP NOW</a>
+                                <a class="btn btn-primary font-bold p-2"  href="{{ url('collections') }}">Shop Now</a>
                             </h4>
                         </div>
                         <div class="col-md-3 mt-3 mb-3">
@@ -111,8 +110,8 @@
                                     </span>
                                 </h4>
                                 <hr>
-                                <h4 class="display-5 font-bold">
-                                    <a style="font-size: 20px;!important;" class="btn btn-warning w-100 p-3" href="{{ url('checkout') }}">Checkout</a>
+                                <h4 class="font-bold">
+                                    <a style="font-size: 20px;!important;" class="btn btn-warning w-100 p-2" href="{{ url('checkout') }}">Checkout</a>
                                 </h4>
                             </div>
                         </div>

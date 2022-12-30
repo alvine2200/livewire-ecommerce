@@ -293,14 +293,15 @@
 }
 
 /* Funda of web it styles end */
+
 html {
-    font-size: 62.5%;
+    font-size: 80.5%;
     overflow-x: hidden;
     scroll-padding-top: 5.5rem;
     scroll-behavior: smooth;
 }
 section {
-    padding: 2rem 9%;
+    padding: 1rem 9%;
 }
 
 section:nth-child(even) {
@@ -448,14 +449,14 @@ header .icons #menu-bars {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
-    padding-top: 9rem;
+    gap: 1rem;
+    padding-top: 5rem;
 }
 .home .home-slider .slide .content {
-    flex: 1 1 45rem;
+    flex: 1 1 42rem;
 }
 .home .home-slider .slide .image {
-    flex: 1 1 45rem;
+    flex: 1 1 42rem;
 }
 .home .home-slider .slide .image img {
     width: 100%;
@@ -467,7 +468,7 @@ header .icons #menu-bars {
 }
 .home .home-slider .slide .content h3 {
     color: var(--black);
-    font-size: 7rem;
+    font-size: 2rem;
 }
 .home .home-slider .slide .content p {
     color: var(--light-blue);

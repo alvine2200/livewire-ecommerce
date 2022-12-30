@@ -31,6 +31,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('collections', 'categories');
     Route::get('collections/{slug}', 'products');
     Route::get('collections/{category_slug}/{peoduct_slug}', 'productDetails');
+    Route::get('thank_you', 'thanks');
 });
 Route::middleware(['auth'])->group(function () {
     Route::controller(WishlistController::class)->group(function () {

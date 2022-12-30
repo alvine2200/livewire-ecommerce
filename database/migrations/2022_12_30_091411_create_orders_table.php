@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('tracking_number');
+            $table->string('tracking_number')->unique();
             $table->string('fullname');
             $table->string('phone_number');
             $table->string('email');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->mediumText('address');
             $table->string('status_message');
             $table->string('payment_mode');
-            $table->string('payment_id');
+            $table->string('payment_id')->unique();
             $table->timestamps();
         });
     }
