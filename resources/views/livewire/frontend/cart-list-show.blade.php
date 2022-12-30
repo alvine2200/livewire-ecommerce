@@ -59,15 +59,18 @@
                                                 <div class="col-md-2 col-7 my-auto">
                                                     <div class="quantity">
                                                         <div class="input-group">
-                                                            <button wire:loading.atr="disabled" wire:click="IncreementQuantity({{ $cartlistItem->id }})" class="btn btn1"><i class="fa fa-plus"></i></button>
+                                                            <button type="button" wire:loading.atr="disabled" wire:click="IncreementQuantity({{ $cartlistItem->id }})" class="btn btn1"><i class="fa fa-plus"></i></button>
                                                             <input type="text" value="{{ $cartlistItem->quantity }}" class="input-quantity" />
-                                                            <button wire:loading.atr="disabled" wire:click="DecreementQuantity({{ $cartlistItem->id }})" class="btn btn1"><i class="fa fa-minus"></i></button>
+                                                            <button type="button" wire:loading.atr="disabled" wire:click="DecreementQuantity({{ $cartlistItem->id }})" class="btn btn1"><i class="fa fa-minus"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1 my-auto">
                                                     <label class="price">${{ $cartlistItem->products?->selling_price * $cartlistItem->quantity  }}
                                                     </label>
+                                                    @php
+                                                        $totalPrice += $cartlistItem->products?->selling_price * $cartlistItem->quantity;
+                                                    @endphp
                                                 </div>
                                                 <div class="col-md-2 col-5 my-auto">
                                                     <div class="remove">
@@ -90,8 +93,27 @@
                                         No Item Added to cart
                                     </h4>
                                 @endforelse
-
-
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mt-3 mb-3">
+                            <h4 class="float-end display-6">
+                                Get the best deals, Shop with us 
+                                <a class="btn btn-primary display-5 font-bold p-3"  href="{{ url('collections') }}">SHOP NOW</a>
+                            </h4>
+                        </div>
+                        <div class="col-md-3 mt-3 mb-3">
+                            <div class="shadow-sm bg-white">
+                                <h4 class="font-bold display-5"> Total:
+                                    <span class="float-end">
+                                        $ {{ $totalPrice }}
+                                    </span>
+                                </h4>
+                                <hr>
+                                <h4 class="display-5 font-bold">
+                                    <a style="font-size: 20px;!important;" class="btn btn-warning w-100 p-3" href="{{ url('checkout') }}">Checkout</a>
+                                </h4>
                             </div>
                         </div>
                     </div>

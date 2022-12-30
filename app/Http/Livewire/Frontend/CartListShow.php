@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CartListShow extends Component
 {
-    public $cart_id, $quantity = 1;
+    public $cart_id, $totalPrice = 0;
 
     public function mounts($cart_id)
     {
