@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Home\CartController;
+use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\FrontendController;
 use App\Http\Controllers\Home\WishlistController;
 
@@ -37,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::controller(CartController::class)->group(function () {
         Route::get('view_cart', 'index');
+    });
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::get('checkout', 'index');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
