@@ -41,11 +41,14 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script>
         window.addEventListener('status', event => {
-            alertify.set('notifier', 'position', 'top-right');
-            alertify.notify(event.detail.text,event.detail.type,5);
+            if (event.detail) {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.notify(event.detail.text, event.detail.type, 5);
+            }
         });
     </script>
     @livewireScripts()
+    @stack('scripts')
 </body>
 
 </html>

@@ -13,7 +13,7 @@ class CheckoutShow extends Component
 {
     public $carts, $totalAmount = 0;
     public $fullname, $email, $phone_number, $pincode, $address, $payment_mode = null, $payment_id = null;
-    protected $listeners = ['CartUpdated' => 'PlaceOrderCod'];
+    protected $listeners = ['TransactionEmit' => 'PaidOnlinePaypal', 'CartUpdated' => 'PlaceOrderCod', 'ValidateAllFields'];
 
     public function rules()
     {
@@ -25,6 +25,36 @@ class CheckoutShow extends Component
             'address' => 'required|string|max:150',
         ];
     }
+
+    public function PaidOnlinePaypal($value)
+    {
+        $this->payment_id = $value;
+        $this->payment_mode = "Paid By Paypal";
+        $cod_order = $this->placeOrder();
+        if ($cod_order) {
+            Cart::where('user_id', Auth::user()->id)->delete();
+            session()->flash('status', 'Paid by Paypal, Thank you');
+            $this->dispatchBrowserEvent('status', [
+                'text' => 'Paid Online Successfully, Order Placed',
+                'type' => 'success',
+                'status' => 200,
+            ]);
+            return redirect('thank_you');
+        } else {
+            $this->dispatchBrowserEvent('status', [
+                'text' => 'Order not placed, Something went Wrong',
+                'type' => 'error',
+                'status' => 500,
+            ]);
+            return back();
+        }
+    }
+
+    public function ValidateAllFields()
+    {
+        $this->validate();
+    }
+
     public function placeOrder()
     {
         $this->validate();
@@ -55,7 +85,7 @@ class CheckoutShow extends Component
                 $cartItem->products()->where('id', $cartItem->product_id)->decrement('quantity', $cartItem->quantity);
             }
         }
-
+        session()->flash('status', 'Order Placed Successfully, Thank you For Shopping with us');
         return $order;
     }
     public function PlaceOrderCod()
