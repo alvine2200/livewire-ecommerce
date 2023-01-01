@@ -49,6 +49,11 @@ class CheckoutShow extends Component
                 'quantity' => $cartItem->quantity,
                 'price' => $cartItem->products->selling_price,
             ]);
+            if ($cartItem->product_color_id != NULL) {
+                $cartItem->productColors()->where('id', $cartItem->product_color_id)->decrement('quantity', $cartItem->quantity);
+            } else {
+                $cartItem->products()->where('id', $cartItem->product_id)->decrement('quantity', $cartItem->quantity);
+            }
         }
 
         return $order;
@@ -77,6 +82,7 @@ class CheckoutShow extends Component
     }
     public function totalCartAmount()
     {
+        $this->totalAmount = 0;
         $this->carts = Cart::where('user_id', Auth::user()->id)->get();
         foreach ($this->carts as $cartItem) {
             $this->totalAmount += $cartItem->products->selling_price * $cartItem->quantity;
