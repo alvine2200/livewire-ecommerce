@@ -11,7 +11,8 @@
                         Products</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-responsive-sm table-striped">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -64,6 +65,8 @@
                             @endforelse
                         </tbody>
                     </table>
+                    </div>
+                    
                     <div class="page mt-3">
                         {{ $products->links() }}
                     </div>

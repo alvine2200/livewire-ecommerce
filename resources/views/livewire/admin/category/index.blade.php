@@ -33,7 +33,8 @@
                  </h4>
              </div>
              <div class="card-body">
-                 <table class="table table-bordered table-striped">
+                <div class="table-responsive">
+                                     <table class="table table-bordered table-striped">
                      <thead>
                          <tr>
                              <th>ID</th>
@@ -60,6 +61,8 @@
 
                      </tbody>
                  </table>
+                </div>
+
                  <div class="page mt-3">
                      {{ $categories->links() }}
                  </div>

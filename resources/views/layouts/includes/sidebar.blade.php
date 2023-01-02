@@ -1,20 +1,20 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ url('admin') }}">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/brands') }}">
-              <i class="mdi mdi-emoticon menu-icon"></i>
+              <i class="mdi mdi-arrow-decision-outline menu-icon"></i>
               <span class="menu-title">Brands</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="ui-basic">
-              <i class="mdi mdi-circle-outline menu-icon"></i>
+              <i class="mdi mdi-folder-plus menu-icon"></i>
               <span class="menu-title">Products</span>
               <i class="menu-arrow"></i>
             </a>
@@ -27,13 +27,13 @@
           </li>
            <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/category') }}">
-              <i class="mdi mdi-emoticon menu-icon"></i>
+              <i class="mdi mdi-clipboard-text-play-outline menu-icon"></i>
               <span class="menu-title">Category</span>
             </a>
           </li>
            <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/colors') }}">
-              <i class="mdi mdi-emoticon menu-icon"></i>
+              <i class="mdi mdi-flash-outline menu-icon"></i>
               <span class="menu-title">Color</span>
             </a>
           </li>
@@ -44,16 +44,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <i class="mdi mdi-chart-pie menu-icon"></i>
-              <span class="menu-title">Charts</span>
+            <a class="nav-link" href="{{ url('admin/orders') }}">
+              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+              <span class="menu-title">Order Management</span>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="documentation/documentation.html">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>

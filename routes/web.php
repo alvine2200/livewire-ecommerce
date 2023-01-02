@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CheckoutController;
@@ -101,5 +102,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('slider/{slider}/update', 'update');
         Route::any('slider/{slider}/delete', 'delete');
         Route::any('slider/{slider}/remove_image', 'remove');
+    });
+
+    //admin orders
+    Route::controller(AdminOrderController::class)->group(function () {
+        Route::get('orders', 'index');
+        Route::get('orders/{orders}', 'orders');
     });
 });

@@ -24,6 +24,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('public/admin/images/favicon.png') }}" />
     {{-- @vite('/public/assets/css/bootstrap.min.css','/public/assets/js/bootstrap.bundle.min.js','/public/assets/js/jquery-3.6.2.min.js') --}}

@@ -11,7 +11,8 @@
                         Slider</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-responsive-sm table-striped">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -48,6 +49,8 @@
 
                         </tbody>
                     </table>
+                    </div>
+                    
                     <div class="pagination mt-3 mb-3">
                         {{ $sliders->links() }}
                     </div>

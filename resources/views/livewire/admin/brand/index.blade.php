@@ -11,7 +11,8 @@
                         data-bs-target="#AddBrandModal" href="#">Add Brand</a>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped">
+                    <div class="table-responsive">
+                                            <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -45,6 +46,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
+
                     <div class="pagination mt-3">
                         {{ $brands->links() }}
                     </div>
