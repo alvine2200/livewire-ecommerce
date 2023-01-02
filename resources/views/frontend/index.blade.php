@@ -9,10 +9,10 @@
                 @foreach ($sliders as $slider)
                     <div class="swiper-slide slide">
                         <div class="content">
-                            <span>Welcome To The Best Ecommerce in the city</span>
-                            <h3>{{ $slider->title }}</h3>
+                            <span>Alvine Online Shop</span>
+                            <h3 class="mt-3">{{ $slider->title }}</h3>
                             <p> {{ $slider->description }} <p>
-                                <a href="#" style="font-size: 18px;" class="btn btn-primary text-white-200 text-bold p-2"> 
+                                <a href="{{ url('collections') }}" style="font-size: 18px;" class="btn btn-primary text-white-200 text-bold p-2"> 
                                     Get Started</a>
                         </div>
                         <div class="image">
