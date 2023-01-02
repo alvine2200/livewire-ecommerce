@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\FrontendController;
+use App\Http\Controllers\Home\OrderController;
 use App\Http\Controllers\Home\WishlistController;
 
 /*
@@ -42,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::controller(CheckoutController::class)->group(function () {
         Route::get('checkout', 'index');
+    });
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('orders', 'index');
+        Route::get('orders/{orders}', 'view_orders');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
