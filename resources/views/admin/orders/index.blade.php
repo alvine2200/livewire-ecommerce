@@ -9,6 +9,31 @@
                     <div class="shadow bg-white p-3">
                         <h4 class="mb-4">My Orders</h4>
                         <hr>
+                        <form action="" method="GET">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="date">Filter by Date</label>
+                                    <input type="date" name="date" value="{{ Request::get('date') ?? date('Y-m-d') }}" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="status">Filter by Status</label>
+                                    <select name="status" class="form-control">
+                                        <option  class="form-control"  value="">SelectAll Status</option>
+                                        <option class="form-control" {{ Request::get('status') == "in progress" ? :'' }} value="in progress">In Progress</option>
+                                        <option class="form-control" {{ Request::get('status') == "completed" ? : '' }} value="completed">Completed</option>
+                                        <option class="form-control" {{ Request::get('status') == "pending" ? : '' }} value="pending">Pending</option>
+                                        <option class="form-control" {{ Request::get('status') == "cancelled" ? :'' }} value="cancelled">Cancelled</option>
+                                        <option class="form-control" {{ Request::get('status') == "outfordelivery" ? :'' }} value="outfordelivery">Out For Delivery</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary"> Filter</button>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </form>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead>
