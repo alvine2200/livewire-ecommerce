@@ -34,4 +34,17 @@ class AdminOrderController extends Controller
             return back()->with('status', 'No order Found');
         }
     }
+
+    public function statusUpdate($id, Request $request)
+    {
+        $order_view = Order::where('id', $id)->first();
+        if ($order_view) {
+            $order_view->update([
+                'status_message' => $request->status_message,
+            ]);
+            return back()->with('status', 'Order Status Updated Successfully');
+        } else {
+            return back()->with('status', 'Id Not Found');
+        }
+    }
 }

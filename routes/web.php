@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CheckoutController;
@@ -108,5 +109,12 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(AdminOrderController::class)->group(function () {
         Route::get('orders', 'index');
         Route::get('orders/{orders}', 'orders');
+        Route::put('orders/{orders}', 'statusUpdate');
+    });
+
+    //admin invoice
+    Route::controller(InvoiceController::class)->group(function () {
+        Route::get('invoice/{orders}/view', 'viewInvoice');
+        Route::get('invoice/{orders}/download', 'downloadInvoice');
     });
 });
