@@ -1,14 +1,30 @@
 <div>
     <div class="row">
-        @include('layouts.includes.status')
+        {{-- @include('layouts.includes.status') --}}
         <div class="py-3 py-md-5 bg-light product_card">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 mt-3">
-                        <div class="bg-white border">
+                        <div class="bg-white border" wire:ignore>
                             @if ($products->productImages)
-                                <img src="{{ asset('Uploads/Products/' . $products->productImages[0]->image) }}"
-                                    class="w-100" alt="Img">
+                                {{-- <img src="{{ asset('Uploads/Products/' . $products->productImages[0]->image) }}"
+                                    class="w-100" alt="Img"> --}}
+                                <div class="exzoom" id="exzoom">
+                                    <div class="exzoom_img_box">
+                                        <ul class='exzoom_img_ul'>
+                                            @foreach ($products->productImages as $proImage)
+                                                <li><img src="{{ asset('Uploads/Products/' . $proImage->image) }}" />
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="exzoom_nav"></div>
+                                    <p class="exzoom_btn">
+                                        <a href="javascript:void(0);" class="exzoom_prev_btn">
+                                        </a>
+                                        <a href="javascript:void(0);" class="exzoom_next_btn"> </a>
+                                    </p>
+                                </div>
                             @else
                                 No Images, Upload
                             @endif
@@ -72,7 +88,8 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button wire:click="AddToCart({{ $products->id }})" class="btn btn1"> <i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                                <button wire:click="AddToCart({{ $products->id }})" class="btn btn1"> <i
+                                        class="fa fa-shopping-cart"></i> Add To Cart</button>
                                 <button type="button" wire:click="addToWishList({{ $products->id }})"
                                     class="btn btn1">
                                     <span wire:loading.remove wire:target="addToWishList">
@@ -110,3 +127,18 @@
 
     </div>
 </div>
+@push('scripts')
+    <script>
+        $(function() {
+            $("#exzoom").exzoom({
+                "navWidth": 40,
+                "navHeight": 40,
+                "navItemNum": 5,
+                "navItemMargin": 4,
+                "navBorder": 1,
+                "autoPlay": false,
+                "autoPlayTimeout": 2000
+            });
+        });
+    </script>
+@endpush

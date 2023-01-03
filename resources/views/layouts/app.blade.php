@@ -21,12 +21,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+
+    {{-- exzoom --}}
+    {{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script> --}}
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', '/public/assets/css/custom.css', '/public/assets/css/swiper.css', '/public/assets/js/swiper.js', '/public/assets/js/customswiper.js', '/public/assets/css/bootstrap.min.css', '/public/assets/js/bootstrap.bundle.min.js', '/public/assets/js/jquery-3.6.2.min.js'])
+    @vite(['/public/assets/exzoom/exzoom/jquery.exzoom.css', 'resources/js/app.js', '/public/assets/css/custom.css', '/public/assets/css/swiper.css', '/public/assets/js/swiper.js', '/public/assets/js/customswiper.js', '/public/assets/css/bootstrap.min.css', '/public/assets/js/bootstrap.bundle.min.js', '/public/assets/js/jquery-3.6.2.min.js','/public/assets/exzoom/exzoom/jquery.exzoom.js'])
     @livewireStyles()
 </head>
 
@@ -47,9 +52,8 @@
             }
         });
     </script>
-    @stack('scripts')
     @livewireScripts()
-    
+    @stack('scripts')
 </body>
 
 </html>
