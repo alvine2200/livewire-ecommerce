@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SiteSettingsController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\FrontendController;
@@ -36,6 +37,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('collections/{category_slug}/{peoduct_slug}', 'productDetails');
     Route::get('thank_you', 'thanks');
     Route::get('new_arrivals', 'newArrivals');
+    Route::get('featured_products', 'featuredProducts');
 });
 Route::middleware(['auth'])->group(function () {
     Route::controller(WishlistController::class)->group(function () {
@@ -117,5 +119,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('invoice/{orders}/view', 'viewInvoice');
         Route::get('invoice/{orders}/download', 'downloadInvoice');
+    });
+
+    //admin site setting globals
+    Route::controller(SiteSettingsController::class)->group(function () {
+        Route::get('setting', 'index');
+        Route::post('set', 'store');
     });
 });

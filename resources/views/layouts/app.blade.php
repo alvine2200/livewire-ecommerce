@@ -26,6 +26,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Scripts -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     @vite(['/public/assets/css/owl.carousel.min.css','/public/assets/css/owl.theme.default.min.css','/public/assets/exzoom/exzoom/jquery.exzoom.css', 'resources/js/app.js', '/public/assets/css/custom.css', '/public/assets/css/swiper.css', '/public/assets/js/swiper.js', '/public/assets/js/customswiper.js', '/public/assets/css/bootstrap.min.css', '/public/assets/js/bootstrap.bundle.min.js', '/public/assets/js/jquery-3.6.2.min.js','/public/assets/exzoom/exzoom/jquery.exzoom.js','public/assets/js/owl.carousel.min.js'])
     @livewireStyles()
 </head>
@@ -36,6 +37,7 @@
         <main>
             @yield('content')
         </main>
+        @include('frontend.footer.index')
     </div>
     <!-- alertify JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>

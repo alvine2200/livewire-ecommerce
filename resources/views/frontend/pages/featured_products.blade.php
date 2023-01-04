@@ -5,18 +5,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 justify-content-center mb-3">
-                    <h4 class="text-center fw-bold display-5">New Arrivals</h4>
+                    <h4 class="text-center fw-bold display-5">Featured Products</h4>
                 </div>
 
-                @forelse ($arrivals as $product)
+                @forelse ($featuredProducts as $product)
                     <div class="col-md-3">
                         <div class="product-card">
                             <div class="product-card-img">
-                                {{-- @if ($product->quantity > 0) --}}
-                                    <label class="stock bg-danger"> New</label>
-                                {{-- @else
+                                @if ($product->quantity > 0)
+                                    <label class="stock bg-success"> In Stock</label>
+                                @else
                                     <label class="stock bg-danger"> Out Of Stock</label>
-                                @endif --}}
+                                @endif
                                 @if ($product->productImages)
                                     <a href="{{ url('collections/' . $product->categories->slug . '/' . $product->slug) }}">
                                         <img src="{{ asset('Uploads/Products/' . $product->productImages[0]->image) }}"
@@ -46,7 +46,7 @@
                 @empty
                     <div class="col-md-12">
                         <div class="p-2">
-                            No Products Available
+                            No Featured Products Available
                         </div>
                     </div>
                 @endforelse
