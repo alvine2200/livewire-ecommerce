@@ -57,7 +57,7 @@
                                         @endforeach
                                     @endif
                                     <div>
-                                        @if ($this->productQuantity === "outOfStock")
+                                        @if ($this->productQuantity == '0')
                                             <label class="stock py-1 mt-2 btn-sm text-white bg-danger"> Out Of
                                                 Stock</label>
                                         @elseif($this->productQuantity > 0)
@@ -68,7 +68,7 @@
                                 @else
                                     <div>
                                         <label class="label-stock mt-2">
-                                            @if ($products->quantity)
+                                            @if ($products->quantity >= 1)
                                                 <label class="stock bg-success"> In Stock</label>
                                             @else
                                                 <label class="stock bg-danger"> Out Of Stock</label>

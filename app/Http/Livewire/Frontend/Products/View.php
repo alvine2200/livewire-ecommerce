@@ -78,7 +78,7 @@ class View extends Component
                         $prodColor = $this->products->productColors()->where('id', $this->prodColorId)->first();
                         if ($prodColor->quantity > 0) {
                             //check if quantity selected is much than the product quantity                            
-                            if ($prodColor->quantity > $this->QuantityCount) {
+                            if ($prodColor->quantity >= $this->QuantityCount) {
                                 //insert with color id
                                 if (Cart::where('user_id', Auth::user()->id)->where('product_color_id', $this->prodColorId)->where('product_id', $product_id)->exists()) {
                                     $this->dispatchBrowserEvent('status', [
@@ -113,16 +113,16 @@ class View extends Component
                         } else {
                             $this->dispatchBrowserEvent('status', [
                                 'text' => 'Out Of Stock',
-                                'type' => 'warning',
-                                'status' => 404,
+                                'type' => 'error',
+                                'status' => 500,
                             ]);
                             return back();
                         }
                     } else {
                         $this->dispatchBrowserEvent('status', [
-                            'text' => 'Select a Product Color',
-                            'type' => 'warning',
-                            'status' => 404,
+                            'text' => 'Product Out Of Stock',
+                            'type' => 'error',
+                            'status' => 500,
                         ]);
                         return back();
                     }
@@ -161,7 +161,7 @@ class View extends Component
                         } else {
                             $this->dispatchBrowserEvent('status', [
                                 'text' => 'Out Of Stock',
-                                'type' => 'warning',
+                                'type' => 'error',
                                 'status' => 404,
                             ]);
                             return back();
@@ -193,7 +193,7 @@ class View extends Component
         $productColor = $this->products->productColors()->where('id', $prodColorId)->first();
         $this->productQuantity = $productColor->quantity;
         if ($this->productQuantity == 0) {
-            $this->productQuantity == "outOfStock";
+            $this->productQuantity == 0;
         }
     }
     public function render()
