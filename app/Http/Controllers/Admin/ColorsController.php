@@ -23,7 +23,7 @@ class ColorsController extends Controller
     public function store(ColorRequest $request)
     {
         $valid = $request->validated();
-        $valid['status'] = $request->status == true ? "1" : "0";
+        $valid['status'] = $request->status == true ? '1' : '0';
         Color::create($valid);
 
         return redirect('admin/colors')->with('success', 'New Color Added Successfully');
@@ -37,9 +37,10 @@ class ColorsController extends Controller
 
     public function update(ColorRequest $request, $id)
     {
-        $valid = $request->validated();
-        $valid['status'] = $request->status == true ? "1" : "0";
-        Color::findOrFail($id)->update($valid);
+        $request->validated();
+        $color = Color::findOrFail($id);
+        $color->status = $request->status == true ? '1' : '0';
+        $color->update();
 
         return redirect('admin/colors')->with('success', 'Color Updated Successfully');
     }

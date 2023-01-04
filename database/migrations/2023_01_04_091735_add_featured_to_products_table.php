@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->tinyInteger('status')->default(0);
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->tinyInteger('featured')->default(0)->comment('0=not-featured,1=featured');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('featured');
+        });
     }
 };

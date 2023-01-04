@@ -166,8 +166,18 @@
                                         <div class="mt-3 mb-3">
                                             <label for="trending">Trending</label><br />
                                             <input type="checkbox" name="trending"
-                                                value="{{ $product->trending == ' 1' ? 'checked' : '' }}">
+                                                {{ $product->trending == '1' ? 'checked':'' }}>
                                             @error('trending')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mt-3 mb-3">
+                                            <label for="featured">Featured</label><br />
+                                            <input type="checkbox" name="featured"
+                                                {{ $product->featured == '1' ? 'checked' : '' }}>
+                                            @error('featured')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>

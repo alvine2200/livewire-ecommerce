@@ -35,6 +35,7 @@ class ProductController extends Controller
         $valid = $request->validated();
         $valid['slug'] = Str::slug($valid['slug']);
         $valid['trending'] = $request->trending == true ? '1' : '0';
+        $valid['featured'] = $request->featured == true ? '1' : '0';
         $valid['status'] = $request->status == true ? '1' : '0';
 
         $category = Category::findOrFail($valid['category_id']);
@@ -80,6 +81,7 @@ class ProductController extends Controller
         $valid = $request->validated();
         $valid['slug'] = Str::slug($valid['slug']);
         $valid['trending'] = $request->trending == true ? '1' : '0';
+        $valid['featured'] = $request->featured == true ? '1' : '0';
         $valid['status'] = $request->status == true ? '1' : '0';
 
         $category = Category::findOrFail($valid['category_id']);

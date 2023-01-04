@@ -25,7 +25,7 @@
                             </div>
                             <div class=" col-md-6 mb-3">
                                 <label for="status">Status</label><br />
-                                <input type="checkbox" name="status" id="status" value="{{ $color->status == "1" ? 'Checked':'' }}" style=" height:60px; width:30px;">  Checked="Hidden",  Unchecked="Visible"
+                                <input type="checkbox" name="status"  {{ $color->status == '1' ? 'checked':'' }} style="height:40px; width:20px;">  Checked="Hidden",  Unchecked="Visible"
                                 @error('status') <small class="text-danger">{{ $message }}</small>@enderror
                             </div>
 

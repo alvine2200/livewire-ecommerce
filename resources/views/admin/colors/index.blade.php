@@ -12,38 +12,39 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                                            <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Code</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($colors as $color)
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td>{{ $color->id }}</td>
-                                    <td>{{ $color->name }}</td>
-                                    <td>{{ $color->code }}</td>
-                                    <td>{{ $color->status == '1' ? 'Hidden' : 'Visible' }}</td>
-                                    <td>
-                                        <a href="{{ url('admin/colors/' . $color->id . '/edit') }}"
-                                            class="btn btn-sm btn-info">Edit</a> |
-                                        <a onclick="return confirm('Are you sure you want to delete this Color?')" href="{{ url('admin/colors/' . $color->id . '/delete') }}"
-                                            class="btn btn-sm btn-danger">Delete</a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7"> Not Product Available</td>
-                                </tr>
-                            @endforelse
+                            </thead>
+                            <tbody>
+                                @forelse ($colors as $color)
+                                    <tr>
+                                        <td>{{ $color->id }}</td>
+                                        <td>{{ $color->name }}</td>
+                                        <td>{{ $color->code }}</td>
+                                        <td>{{ $color->status == '1' ? 'Hidden' : 'Visible' }}</td>
+                                        <td>
+                                            <a href="{{ url('admin/colors/' . $color->id . '/edit') }}"
+                                                class="btn btn-sm btn-info">Edit</a> |
+                                            <a onclick="return confirm('Are you sure you want to delete this Color?')"
+                                                href="{{ url('admin/colors/' . $color->id . '/delete') }}"
+                                                class="btn btn-sm btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7"> Not Product Available</td>
+                                    </tr>
+                                @endforelse
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>

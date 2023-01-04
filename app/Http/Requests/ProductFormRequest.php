@@ -34,6 +34,7 @@ class ProductFormRequest extends FormRequest
             'selling_price' => 'required|integer',
             'quantity' => 'required|integer',
             'trending' => 'nullable',
+            'featured' => 'nullable',
             'status' => 'nullable',
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',

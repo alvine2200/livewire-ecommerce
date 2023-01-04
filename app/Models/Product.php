@@ -28,6 +28,7 @@ class Product extends Model
         'original_price',
         'selling_price',
         'trending',
+        'featured',
         'status',
     ];
 
