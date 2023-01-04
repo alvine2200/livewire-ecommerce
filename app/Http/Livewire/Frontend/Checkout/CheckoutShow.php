@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class CheckoutShow extends Component
 {
     public $carts, $totalAmount = 0;
-    public $fullname, $email, $phone_number, $pincode, $address, $payment_mode = null, $payment_id = null;
+    public $fullname, $totalProductsAmount, $email, $phone_number, $pincode, $address, $payment_mode = null, $payment_id = null;
     protected $listeners = ['TransactionEmit' => 'PaidOnlinePaypal', 'CartUpdated' => 'PlaceOrderCod', 'ValidateAllFields'];
 
     public function rules()

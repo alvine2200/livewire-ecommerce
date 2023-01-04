@@ -3,6 +3,7 @@
 @section('title', 'Ecommerce Homepage')
 
 @section('content')
+    {{-- home slider --}}
     <section class="home" id="home">
         <div class=" swiper mySwipper home-slider ">
             <div class="swiper-wrapper wrapper">
@@ -31,7 +32,7 @@
         </div>
 
     </section>
-
+    {{-- trending products --}}
     <section>
         <div class="py-5">
             <div class="container">
@@ -88,7 +89,120 @@
             </div>
         </div>
     </section>
+    {{-- featured Products --}}
+    <section>
+        <div class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 justify-content-center mb-3">
+                        <h4 class="text-center fw-bold display-5">Featured Products</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @if ($featuredProducts)
+                            <div class="owl-carousel owl-theme trendingProducts">
+                                @foreach ($featuredProducts as $product)
+                                    <div class="item product-card">
+                                        <div class="product-card-img">
+                                            <label class="stock bg-danger"> New </label>
+                                            @if ($product->productImages)
+                                                <a
+                                                    href="{{ url('collections/' . $product->categories->slug . '/' . $product->slug) }}">
+                                                    <img src="{{ asset('Uploads/Products/' . $product->productImages[0]->image) }}"
+                                                        alt="{{ $product->name }}">
+                                                </a>
+                                            @else
+                                                <div class="col-md-12 text-center">
+                                                    No Product Images
+                                                </div>
+                                            @endif
 
+                                        </div>
+                                        <div class="product-card-body">
+                                            <p class="product-brand">{{ $product->brands->name }}</p>
+                                            <h5 class="product-name">
+                                                <a
+                                                    href="{{ url('collections/' . $product->categories->slug . '/' . $product->slug) }}">
+                                                    {{ $product->name }}
+                                                </a>
+                                            </h5>
+                                            <div>
+                                                <span class="selling-price">${{ $product->selling_price }}</span>
+                                                <span class="original-price">${{ $product->original_price }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="col-md-12">
+                                <div class="p-2">
+                                    No Featured Products Available
+                                </div>
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- new arrivals --}}
+    <section>
+        <div class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 justify-content-center mb-3">
+                        <h4 class="text-center fw-bold display-5">New Arrivals</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @if ($arrivals)
+                            <div class="owl-carousel owl-theme trendingProducts">
+                                @foreach ($arrivals as $product)
+                                    <div class="item product-card">
+                                        <div class="product-card-img">
+                                            <label class="stock bg-danger"> New </label>
+                                            @if ($product->productImages)
+                                                <a
+                                                    href="{{ url('collections/' . $product->categories->slug . '/' . $product->slug) }}">
+                                                    <img src="{{ asset('Uploads/Products/' . $product->productImages[0]->image) }}"
+                                                        alt="{{ $product->name }}">
+                                                </a>
+                                            @else
+                                                <div class="col-md-12 text-center">
+                                                    No Product Images
+                                                </div>
+                                            @endif
+
+                                        </div>
+                                        <div class="product-card-body">
+                                            <p class="product-brand">{{ $product->brands->name }}</p>
+                                            <h5 class="product-name">
+                                                <a
+                                                    href="{{ url('collections/' . $product->categories->slug . '/' . $product->slug) }}">
+                                                    {{ $product->name }}
+                                                </a>
+                                            </h5>
+                                            <div>
+                                                <span class="selling-price">${{ $product->selling_price }}</span>
+                                                <span class="original-price">${{ $product->original_price }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="col-md-12">
+                                <div class="p-2">
+                                    No Products Available
+                                </div>
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @section('script')
@@ -112,4 +226,5 @@
             })
         });
     </script>
+    
 @endsection
