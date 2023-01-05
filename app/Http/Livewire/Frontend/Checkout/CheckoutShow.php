@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Frontend\Checkout;
 
+use Exception;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\OrderItem;
 use Livewire\Component;
+use App\Models\OrderItem;
 use Illuminate\Support\Str;
+use App\Mail\OrderInvoiceMailable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use AfricasTalking\SDK\AfricasTalking;
 
 class CheckoutShow extends Component
 {
@@ -57,6 +61,7 @@ class CheckoutShow extends Component
 
     public function placeOrder()
     {
+
         $this->validate();
         $order = Order::create([
             'user_id' => Auth::user()->id,
@@ -90,16 +95,30 @@ class CheckoutShow extends Component
     }
     public function PlaceOrderCod()
     {
+        //$this->sendSms();
         $this->payment_id = "POD";
         $this->payment_mode = "Pay on delivery";
         $cod_order = $this->placeOrder();
         if ($cod_order) {
             Cart::where('user_id', Auth::user()->id)->delete();
+            try {
+                $order = Order::findOrFail($cod_order->id);
+                Mail::to("$order->email")->send(new OrderInvoiceMailable($order));
+                $this->dispatchBrowserEvent('status', [
+                    'text' => 'Order Placed Successfully, email sent',
+                    'type' => 'success',
+                    'status' => 200,
+                ]);
+                return back()->with('status', 'Order Invoice successfully sent to ' . $order->email);
+            } catch (\Exception $err) {
+                return back()->with('status', $err);
+            }
             $this->dispatchBrowserEvent('status', [
                 'text' => 'Order Placed Successfully',
                 'type' => 'success',
                 'status' => 200,
             ]);
+
             return redirect('thank_you');
         } else {
             $this->dispatchBrowserEvent('status', [
@@ -128,4 +147,39 @@ class CheckoutShow extends Component
             'totalProductsAmount' => $this->totalProductsAmount,
         ]);
     }
+
+    // public function sendSms()
+    // {
+    //     // Set your app credentials
+    //     $username   = "sandbox";
+    //     $apiKey     = "4fb37ed40e2d57918bcc36eae6971005c7c612b7f558250a202e6d52305e07fc";
+
+    //     // Initialize the SDK
+    //     $AT         = new AfricasTalking($username, $apiKey);
+
+    //     // Get the SMS service
+    //     $sms        = $AT->sms();
+
+    //     // Set the numbers you want to send to in international format
+    //     $recipients = "+254712135643,+254708878235";
+
+    //     // Set your message
+    //     $message    = "Orders Placed Successfully";
+
+    //     // Set your shortCode or senderId
+    //     $from       = "Alvine-Ecommerce";
+
+    //     try {
+    //         // Thats it, hit send and we'll take care of the rest
+    //         $result = $sms->send([
+    //             'to'      => $recipients,
+    //             'message' => $message,
+    //             'from'    => $from
+    //         ]);
+
+    //         return  print_r($result);
+    //     } catch (Exception $e) {
+    //         echo "Error: " . $e->getMessage();
+    //     }
+    // }
 }
