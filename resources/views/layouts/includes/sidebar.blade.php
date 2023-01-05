@@ -55,5 +55,11 @@
               <span class="menu-title">Site Setting</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/users') }}">
+              <i class="mdi mdi-home-account menu-icon"></i>
+              <span class="menu-title">User Management</span>
+            </a>
+          </li>
         </ul>
       </nav>

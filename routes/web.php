@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteSettingsController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\FrontendController;
@@ -38,6 +39,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('thank_you', 'thanks');
     Route::get('new_arrivals', 'newArrivals');
     Route::get('featured_products', 'featuredProducts');
+    Route::get('search', 'SearchProducts');
 });
 Route::middleware(['auth'])->group(function () {
     Route::controller(WishlistController::class)->group(function () {
@@ -125,5 +127,15 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(SiteSettingsController::class)->group(function () {
         Route::get('setting', 'index');
         Route::post('set', 'store');
+    });
+
+    //user routes
+    Route::controller(UserController::class)->group(function () {
+        Route::get('users', 'index');
+        Route::get('users/create', 'create');
+        Route::post('users/store', 'store');
+        Route::get('users/{user}/edit', 'edit');
+        Route::PUT('users/{user}/update', 'update');
+        Route::any('users/{user}/delete', 'destroy');
     });
 });

@@ -19,6 +19,19 @@ class FrontendController extends Controller
         return view('frontend.index', compact('sliders', 'trendings', 'arrivals', 'featuredProducts'));
     }
 
+    public function SearchProducts(Request $request)
+    {
+        $request->validate([
+            'search' => 'string|max:50'
+        ]);
+        if ($request->search) {
+            $search = Product::where('name', 'LIKE', '%' . $request->search . '%')->paginate(2);
+            return view('frontend.search.index', compact('search'));
+        } else {
+            return back()->with('status', 'Empty search');
+        }
+    }
+
     public function categories()
     {
         $categories = Category::where('status', '0')->get();
