@@ -11,10 +11,19 @@
                         <h4 class="mb-4 m-2">
                             <i class="fa fa-shopping-cart"></i> My Order Details
                             <a href="{{ url('admin/orders') }}" class="btn btn-sm btn-danger float-end m-2 ">Back</a>
-                            <a href="{{ url('admin/invoice/'.$order_view->id.'/view') }}" target="_blank" class=" m-2 btn btn-sm btn-primary float-end ">View Invoice</a>
-                            <a href="{{ url('admin/invoice/'.$order_view->id.'/download') }}" class=" m-2 btn btn-sm btn-info float-end ">Download Invoice</a>
+                             <a href="{{ url('admin/invoice/' . $order_view->id . '/view') }}" target="_blank"
+                                class=" m-2 btn btn-sm btn-primary float-end "> <i class="fas fa-eye-slash"></i>
+                                View Invoice</a>
+                            <a href="{{ url('admin/invoice/' . $order_view->id . '/download') }}"
+                                class="m-2 btn btn-sm btn-info float-end "><i class="fas fa-download"></i> Download
+                                Invoice</a>
+                            <a href="{{ url('admin/invoice/' . $order_view->id . '/mail') }}"
+                                class="m-2 btn btn-sm btn-info float-end "><i class="fas fa-envelope"></i> Send Email Invoice
+                            </a>
+                           
+
                         </h4>
-                        <br/>            
+                        <br />
                         <hr>
 
                         <div class="row">

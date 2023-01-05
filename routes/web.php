@@ -121,6 +121,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('invoice/{orders}/view', 'viewInvoice');
         Route::get('invoice/{orders}/download', 'downloadInvoice');
+        Route::get('invoice/{orders}/mail', 'sendOrderMail');
     });
 
     //admin site setting globals
